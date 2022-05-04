@@ -1,0 +1,104 @@
+.cabecario {
+    width: 95vw;
+    display: block;
+    height: 200px;
+}
+
+.detalhesFactura {
+    width: 95vw;
+    display: block;
+    margin-top: 10px;
+    height: 20px;
+    padding: 5px;
+    color: white;
+    font-weight: bolder;
+
+}
+
+.detalhesEmpresa {
+    float: left;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.detalhesEmpresa p {
+    margin: 0;
+}
+
+.logoCabecario {
+    float: right;
+}
+
+.bg-kixicredito-green-dark {
+    background-color: #005c3c;
+}
+
+.bg-kixicredito-green-light {
+    background-color: #89c765;
+}
+
+.bg-kixicredito-orange {
+    background-color: #f99d1c;
+}
+
+.detalhesCliente div {
+    margin-left: 350px;
+}
+
+.detalhesCliente {
+    width: 95vw;
+    margin-top: 20px;
+}
+
+.detalhesCliente table {
+    border-collapse: collapse;
+}
+
+.labelCliente {
+    background-color: lightgoldenrodyellow;
+    padding-left: 50px;
+    text-align: right;
+}
+
+.dataCliente {
+    background-color: lightblue;
+}
+
+.detalhesEmissaoFactura{
+    margin-top: 25px;
+    margin-bottom: 50px;
+}
+/**/.detalhesEmissaoFactura table{
+    width: 95vw;
+    border-collapse: collapse;
+}
+.detalhesEmissaoFactura table,
+.detalhesEmissaoFactura th,
+.detalhesEmissaoFactura td{
+    border: 1px solid black;
+    text-align: center;
+}
+.text-size-8{
+    font-size: 8px !important;
+}
+.text-size-10{
+    font-size: 10px !important;
+}
+
+
+.text-size-12{
+    font-size: 12px !important;
+}
+
+
+.text-size-14{
+    font-size: 14px !important;
+}
+
+
+.text-size-16{
+    font-size: 16px !important;
+}
+
+.text-size-18{
+    font-size: 18px !important;
+}
