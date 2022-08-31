@@ -1,0 +1,7 @@
+{
+  "host_db": "localhost",
+  "user_connect": "sa",
+  "psw_connect": "#LocalSrv19",
+  "instancia_db": "",
+  "bd_target": "dteKixiCredito"
+}

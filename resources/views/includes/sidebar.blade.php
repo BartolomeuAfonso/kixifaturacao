@@ -1,9 +1,9 @@
 <!-- Left Sidenav -->
-<aside id="sidebar" class="sidebar">
+<aside id="sidebar" class="sidebar" style="background:#f8f9fe ">
 
     <ul class="sidebar-nav" id="sidebar-nav">
         <li class="nav-item">
-            <a class="nav-link " href="{{url('entrar')}}">
+            <a class="nav-link " href="{{ url('home') }}">
                 <i class="bi bi-grid"></i>
                 <span>Módulo Facturação</span>
             </a>
@@ -15,8 +15,8 @@
             <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li class="nav-item"><a class="nav-link" href="{{ url('clientes') }}"> <i
                             class="bi bi-circle"></i>Registo de Clientes</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ url('lista') }}"> <i
-                            class="bi bi-circle"></i>Lista de Clientes</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url('lista') }}"> <i class="bi bi-circle"></i>Lista
+                        de Clientes</a></li>
 
 
             </ul>
@@ -30,6 +30,8 @@
                             class="bi bi-circle"></i>Inserção</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ url('listaFactura') }}"> <i
                             class="bi bi-circle"></i>Lista</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url('recibo') }}"> <i
+                            class="bi bi-circle"></i>Inserir Recibos Manual</a></li>
 
             </ul>
         </li>

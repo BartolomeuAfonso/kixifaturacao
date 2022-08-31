@@ -1,0 +1,14 @@
+{
+    "db_facturas": {
+        "host_db": "KC-LTOP-DSO-3\\CONSOLIDADO_LOCA",
+        "user_connect": "sa",
+        "psw_connect": "devtec",
+        "bd_target": "dteKixiCredito"
+    },
+    "db_autenticacao": {
+        "host_db": "KC-LTOP-DSO-3\\CONSOLIDADO_LOCA",
+        "user_connect": "sa",
+        "psw_connect": "devtec",
+        "bd_target": "bdKixi"
+    }
+}

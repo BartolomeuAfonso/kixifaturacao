@@ -1,0 +1,59 @@
+body{
+	font-family: "Times New Roman", Times, serif;
+}
+.bg-kixicredito-green-light {
+    background-color: #89c765 !important;
+}
+
+.bg-kixicredito-green-dark {
+    background-color: #005c3c !important;;
+}
+
+.bg-kixicredito-orange {
+    background-color: #f99d1c !important;;
+
+}
+
+.text-kixicredito-green-light {
+    color: #89c765 !important;;
+}
+
+.text-kixicredito-green-dark {
+    color: #005c3c !important;;
+}
+
+.text-kixicredito-orange {
+    color: #f99d1c !important;;
+}
+
+.fill-kixicredito-green-light{
+    fill:#89c765
+}
+.fill-kixicredito-orange{
+    fill:#f99d1c
+}
+
+.normal-text{
+	color: black !important;
+	font-size: 12px !important;
+}
+
+.PAGADA{
+	background-color:rgb(197, 241, 199);
+}
+.ATRASADA{
+	background-color:rgb(253, 204, 213)!important;
+}
+.VIGENTE{
+	background-color:rgb(249, 251, 181)!important;
+}
+.PENDIENTE{
+	background-color:rgb(238, 236, 234)!important;
+}
+.ADELANTADA{
+	background-color:green!important;
+}
+
+.strong-text{
+	
+}

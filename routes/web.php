@@ -16,15 +16,21 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('layouts.login');
 });
+
 Route::get('clientes', 'ClienteController@index');
 Route::post('registar', 'ClienteController@registarCliente');
 Route::get('lista', 'ClienteController@listaCliente');
 Route::get('fatura', 'FaturaController@index');
+Route::get('recibo', 'FaturaController@indexRecibo');
 Route::get('listaFactura', 'FaturaController@listaFactura');
 Route::post('salvarFatura', 'FaturaController@salvarFatura');
+Route::post('salvarRecibo', 'FaturaController@salvarReciboManual');
 Route::get('editar/{id}', 'ClienteController@obterDados');
 Route::post('atualizar', 'ClienteController@editar');
 Route::get('impressao/{codigoFactura}/{codigo}', 'FaturaController@ImprimirFatura');
+Route::get('buscar', 'FaturaController@buscarFactura');
+Route::get('emitir/{codigoFactura}', 'FaturaController@emitirServico');
+//Route::post('salvarFatura1', 'FaturaController@salvarFaturaNota');
 
 
 Route::get('sair', function () {
@@ -33,11 +39,15 @@ Route::get('sair', function () {
     }
 });
 
-Route::post('entrar', function () {
 
+Route::post('entrar', 'Auth\LoginController@entrar');
+
+
+Route::get('home', function () {
     return view('layouts.inicio');
+    // dd('Teste');
+
 });
-
-
+//Route::get('home', 'HomeController@index');
 
 Auth::routes();

@@ -30,14 +30,17 @@ class ClienteController extends Controller
 
     public function listaCliente()
     {
-        $listaCliente = clienteEmpresa::all();
+        $listaCliente = clienteEmpresa::paginate(10);
         return view('formulario.listaCliente', compact('listaCliente'));
     }
 
     // Registar Cliente
     public function registarCliente(Request $request)
     {
-        //  $contador = $this->getContador()->numerador + 1;
+        $contador = $this->getContador()->numerador + 1;
+        $capitalSocial = str_replace('.', '', $request->capitalSocial);
+
+
         $validator = Validator::make(
             $request->all(),
             [
@@ -58,22 +61,22 @@ class ClienteController extends Controller
                 $cliente = new clienteEmpresa();
                 $Uuid = Str::uuid()->toString();
                 $cliente->id =   $Uuid;
-                $cliente->cleCodigo = 'FM/P/K/100'; // $contador;
+                $cliente->cleCodigo = 'FM/P/K/' . $contador;
                 $cliente->nomeEmpresa = $request->input('nomeEmpresa');
                 $cliente->nif = $request->input('nif');
                 $cliente->socio = $request->input('socio');
                 $cliente->socio1 = $request->input('socio1');
                 $cliente->sector = $request->input('sector');
                 $cliente->telefone = $request->input('telefone');
-                $cliente->capitalSocial = $request->input('capitalSocial');
+                $cliente->capitalSocial = $capitalSocial;
                 $cliente->objectoSocial = $request->input('objectoSocial');
                 $cliente->nBi = $request->input('nBi');
                 $cliente->nBi2 = $request->input('nBi2');
                 $cliente->dataConstituicao = $request->input('dataConstituicao');
                 $cliente->endereco = $request->input('endereco');
-                $cliente->numerador = 1; //$contador;
+                $cliente->numerador = $contador;
                 $cliente->save();
-                dd($cliente->save());
+
                 return back()->with('error', 'Dados salvo com sucesso');
             }
         } catch (Exception $e) {
@@ -94,7 +97,6 @@ class ClienteController extends Controller
     public function obterDados($id)
     {
         $cliente = clienteEmpresa::getNome($id);
-        //dd($cliente);
         return view('formulario.edit', compact('cliente'));
     }
 

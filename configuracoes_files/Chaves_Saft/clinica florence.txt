@@ -1,0 +1,10 @@
+Laboratorio
+
+1. Possibilidade de adicionar unidade de recolha - por fazer;
+2. Buscar por nome - Feito
+3- possibilidade de mudar de entidade em pedidos de fora mas sempre com a entidade centro florence e ou outras 
+
+3- numnero de amostrar no sistema deve ser igual ao numero de amostrar no livro de registo e imprimir o mesmo e se possivel dar a possibilidade de alterar o mesmo
+
+4- incluir na folha de resultado medico requisitante,descricao da proveniencia do paciente interno e ou externo  
+5- 

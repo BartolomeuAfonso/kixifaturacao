@@ -17,7 +17,7 @@ class tbeConceito extends Model
             ->join('tbeIva', 'tbeConceito.ccoCodigo', '=', 'tbeIva.ccoCodigo')
             ->where('tbeIva.ivaInicio', '<=', $data)
             ->where('tbeIva.ivaFim', '>=', $data)
-            ->select('tbeConceito.ccoCodigo' , 'tbeConceito.ccoNome' , 'tbeConceito.ccoDescripcao' , 'tbeIva.ivaPercentagem', 'tbeIva.SAFTTaxExemptionCode', 'tbeIva.ivaVerba', 'tbeIva.ivaRegime')
+            ->select('tbeConceito.ccoCodigo', 'tbeConceito.ccoNome', 'tbeConceito.ccoDescripcao', 'tbeIva.ivaPercentagem', 'tbeIva.SAFTTaxExemptionCode', 'tbeIva.ivaVerba', 'tbeIva.ivaRegime')
             ->get();
         return $produtos;
     }
@@ -30,9 +30,9 @@ class tbeConceito extends Model
             ->where('tbeIva.ivaInicio', '<=', $data)
             ->where('tbeIva.ivaFim', '>=', $data)
             ->where('tbeConceito.ccoCodigo', '=', $codigoProduto)
-            ->select('tbeConceito.ccoCodigo' , 'tbeConceito.ccoNome' , 'tbeConceito.ccoDescripcao' , 'tbeIva.ivaPercentagem', 'tbeIva.SAFTTaxExemptionCode', 'tbeIva.ivaVerba', 'tbeIva.ivaRegime')
-            ->first();
+            ->select('tbeConceito.ccoCodigo', 'tbeConceito.ccoNome', 'tbeConceito.ccoDescripcao', 'tbeIva.ivaPercentagem', 'tbeIva.SAFTTaxExemptionCode', 'tbeIva.ivaVerba', 'tbeIva.ivaRegime')
+            ->get();
+       // dd($produtos);
         return $produtos;
     }
-
 }

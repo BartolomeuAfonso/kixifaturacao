@@ -1,15 +1,39 @@
 @extends('layouts.inicio')
 @section('content1')
-    <section class="section dashboard">
-        <div class="row" style="margin-left:15%;">
+    <section class="section dashboard" style="margin-top:100px">
+        <div class="row" style="margin-left:15%; margin-top: 50px">
             <div class="col-lg-12" style="padding-left: 50px; padding-right: 50px">
                 <div class="card">
+                    <div class="card"  style="background:#005c3c;  color:#fff; font-weight: bold;" aria-current="true">
+                        <div ><h2>Emissão de Factura</h2></div>
+                    </div>
                     <div class="row">
                         <form method="post" name="form" action="{{ url('salvarFatura') }}" target="_blank">
                             @csrf
+
                             <div class="card-body">
                                 <div class="row">
-                                    <h5 class="card-title" style="font-weight: bold;">Carrinho de Vendas</h5>
+                                    <h5 class="card-title" style="font-weight: bold;">Seleccione o tipo de Fatura que
+                                        deseja Emitir</h5>
+                                    <div class="col-12" style="margin-bottom: 20px">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" value="GF" name="tipoFatura"
+                                                id="flexRadioDefault2" checked>
+                                            <label class="form-check-label" for="flexRadioDefault2">
+                                                Fatura Generica - GF
+
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" value="FP" type="radio" name="tipoFatura"
+                                                id="flexRadioDefault1">
+                                            <label class="form-check-label" for="flexRadioDefault1">
+                                                Fatura Proforma - FP
+
+                                            </label>
+                                        </div>
+
+                                    </div>
                                     <div class="col-12">
                                         <table class="table table-striped" id="dadosCliente">
                                             <tr>
@@ -37,7 +61,7 @@
                                                         <option value="" disabled selected>Nada Selecionado...</option-->
                                                             @foreach ($produto as $produtos)
                                                         <option id="idProduto"
-                                                            value="{{$produtos->ccoCodigo }}-{{$produtos->ccoNome }}-{{$produtos->ivaRegime }}">
+                                                            value="{{ $produtos->ccoCodigo }}-{{ $produtos->ccoNome }}-{{ $produtos->ivaRegime }}">
                                                             {{ $produtos->ccoNome }}
                                                         </option>
                                                         @endforeach
@@ -49,7 +73,8 @@
                                                 </td>
                                                 <td class="col-4" style="text-align: left">
                                                     <button type="button" class="btn btn-primary btn-sm float-left"
-                                                        style="margin-left:100px" onClick="getPreco();">Adicionar</button>
+                                                        style="margin-left:100px" onClick="getPreco();"><i
+                                                            class="bi bi-arrow-down-square"></i> Adicionar</button>
                                                 </td>
                                             </tr>
                                         </table>
@@ -106,7 +131,7 @@
                                 </div>
                                 <div class="row no-print">
                                     <div class="col-6">
-                                        <button class="btn btn-primary"><i class="fas fa-print"></i> Salvar</button>
+                                        <button class="btn btn-primary"><i class="bi bi-check"></i>Salvar</button>
                                     </div>
                                 </div>
                             </div>

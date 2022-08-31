@@ -29,7 +29,7 @@
             </table>
         </div>
         <div class="col-5 ml-auto text-right">
-            <h6 class="font-weight-bolder">Factura {{$factura[0]->ccoNumero}} </h6>
+            <h6 class="font-weight-bolder">Factura {{ $factura[0]->ccoNumero }} </h6>
             <p>{{ $versao }}</p>
         </div>
     </div>
@@ -43,22 +43,39 @@
         </div>
     </div>
 
+    @if ($tipoFactura == 'NC' || $tipoFactura == 'ND')
+        <div class="row">
+            <div class="alert alert-dark small" style="padding-top:-2px; padding-bottom:-1px;font-weight: bold">
+                @if ($tipoFactura == 'NC')
+                    Anulação<br> Ref.: {{ $factura[0]->SAFTInvoiceNo }}
+            </div>
+        @else
+            Ref.: {{ $factura[0]->SAFTInvoiceNo }}
+        </div>
+    @endif
+    </div>
+@else
+    @endif
     <div class="row m-0 p-0">
         <div class="col-12">
             <table class="table table-sm small">
                 <tr class="p-0 m-0">
                     <th class="p-0 m-0">Data de Emissão</th>
                     <th class="p-0 m-0">Data Vencimento</th>
+                    <th class="p-0 m-0">Referente</th>
                     <th class="p-0 m-0">Cod. Entidade</th>
                     <th class="p-0 m-0">Moeda</th>
-                    <th class="p-0 m-0">Dolar(USD)</th>
+                    <th class="p-0 m-0">EURO</th>
                 </tr>
                 <tr class="p-0 m-0">
-                    <td class="p-0 m-0">{{date('Y-m-d', strtotime($factura[0]->ccoDataEmissao))}}</td>
-                    <td class="p-0 m-0">{{ date('Y-m-d', strtotime('+30 days', strtotime($factura[0]->ccoDataEmissao)))}}</td>
-                    <td class="p-0 m-0">{{$factura[0]->cleCodigo}}</td>
+                    <td class="p-0 m-0">{{ date('Y-m-d', strtotime($factura[0]->ccoDataEmissao)) }}</td>
+                    <td class="p-0 m-0">
+                        {{ date('Y-m-d', strtotime('+30 days', strtotime($factura[0]->ccoDataEmissao))) }}</td>
+                    <td class="p-0 m-0"></td>
+                    <td class="p-0 m-0">{{ $factura[0]->cleCodigo }}</td>
+
                     <td class="p-0 m-0">AKZ</td>
-                    <td class="p-0 m-0">455,620 </td>
+                    <td class="p-0 m-0">0</td>
                 </tr>
             </table>
         </div>
@@ -79,7 +96,7 @@
                         <th class="m-0 p-0 text-center">Total</th>
                     </tr>
                 </thead>
-              
+
                 <tbody>
                     @foreach ($factura as $fatura_itens)
                         <tr>
@@ -87,15 +104,16 @@
                             <td class="m-0 p-0 text-center">{{ $fatura_itens->quantidade }}</td>
                             <td class="m-0 p-0 text-center">un</td>
                             <td class="m-0 p-0 text-center">
-                                {{ number_format($fatura_itens->dteMontante  , 2, '.', ' ')}}</td>
+                                {{ number_format($fatura_itens->dteMontante, 2, '.', ' ') }}</td>
                             <td class="m-0 p-0 text-center">{{ $fatura_itens->TaxPercentage }}</td>
                             <td class="m-0 p-0 text-center">Codigo</td>
                             <td class="m-0 p-0 text-center">
-                                {{ number_format($fatura_itens->dteMontante  * $fatura_itens->quantidade, 2, '.', ' ') }}</td>
+                                {{ number_format($fatura_itens->dteMontante * $fatura_itens->quantidade, 2, '.', ' ') }}
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
-             
+
             </table>
         </div>
     </div>
@@ -109,80 +127,80 @@
                     </tr>
                     <tr class="m-0 p-0 small">
                         <th>Taxa (Imposto)</th>
-                        <th >Incid./Qtd</th>
-                        <th >Valor</th>
+                        <th>Incid./Qtd</th>
+                        <th>Valor</th>
                         <th>Motivo Isenção</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                 
-                        <tr>
-                            <td class="m-0 p-0 text-center">
-                                @if ($fatura_itens->TaxPercentage == 14)
-                                    (IVA)
-                                @else
-                                    0
-                                @endif
-                            </td>
-                            <td>1.00</td>
-                            <td>
-                                {{ number_format($factura[0]->ccoTotal, 2, '.', ' ') }}</td>
-                            <td>
-                                {{ $fatura_itens->TaxExemptionCode }}</td>
-                        </tr>
-                  
+
+                    <tr>
+                        <td class="m-0 p-0 text-center">
+                            @if ($fatura_itens->TaxPercentage == 14)
+                                (IVA)
+                            @else
+                                0
+                            @endif
+                        </td>
+                        <td>{{ number_format($factura[0]->ccoTotal - $factura[0]->ccoIVA, 2, '.', ' ') }}</td>
+                        <td>
+                            {{ number_format($factura[0]->ccoIVA, 2, '.', ' ') }}</td>
+                        <td style="margin-left: -5px">
+                            {{ $fatura_itens->TaxExemptionCode }}</td>
+                    </tr>
+
                 </tbody>
             </table>
         </div>
     </div>
-    <div class="col-8 ml-auto" style="margin-top:10px; margin-right:-100px;">
+    <div class="col-8 ml-auto" style="margin-top:10px; margin-right:-50px;">
         <table class="table table-sm">
             <thead>
                 <tr>
                     <th scope="col"></th>
                     <th scope="col">AKZ</th>
-                    <th scope="col">Dolar(USD)</th>
-                
+                    <th scope="col">EURO</th>
+
                 </tr>
             </thead>
             <tbody>
-            <tr class="smal m-0 p-0">
-                <td>Total líquido</td>
-                <td>
-                    {{ number_format($factura[0]->ccoTotal-$factura[0]->ccoIVA, 2, '.', ' ') }} 
-                </td>
-                <td>
-                    {{ number_format(($factura[0]->ccoTotal-$factura[0]->ccoIVA)/455.620, 2, '.', ' ') }}
-                </td>
-            </tr>
-            <tr class="smal m-0 p-0" >
-                <td>Total Imposto</td>
-                <td>
-                    {{ number_format($factura[0]->ccoIVA, 2, '.', ' ') }}
-                </td>
-                <td>
-                    {{ number_format($factura[0]->ccoIVA/455.620, 2, '.', ' ') }} 
-                </td>
-            </tr>
-            <tr class="m-0 p-0" >
-                <th>TOTAL A PAGAR</th>
-                <td>
-                    {{ number_format($factura[0]->ccoTotal, 2, '.', ' ') }}
-                </td>
-                <td>
-                    {{ number_format($factura[0]->ccoTotal/455.620, 2, '.', ' ') }}
-                    
-                </td>
-            </tr>
+                <tr class="smal m-0 p-0">
+                    <td>Total líquido</td>
+                    <td>
+                        {{ number_format($factura[0]->ccoTotal - $factura[0]->ccoIVA, 2, '.', ' ') }}
+                    </td>
+                    <td>
+                     0
+                    </td>
+                </tr>
+                <tr class="smal m-0 p-0">
+                    <td>Total Imposto</td>
+                    <td>
+                        {{ number_format($factura[0]->ccoIVA, 2, '.', ' ') }}
+                    </td>
+                    <td>
+                    0
+                    </td>
+                </tr>
+                <tr class="m-0 p-0">
+                    <th>TOTAL A PAGAR</th>
+                    <td>
+                        {{ number_format($factura[0]->ccoTotal, 2, '.', ' ') }}
+                    </td>
+                    <td>
+                   0
+
+                    </td>
+                </tr>
             </tbody>
 
         </table>
     </div>
     <footer class="fixed-bottom p-2 small" style="height: 85px">
         <div>
-            <span class="text-size-8 ml-4">yht6-Processado por programa validado n.° 0000/AGT/2020 © Kixipedidos 6.1 | Os
-                bens - serviços foram colocados à disposição do adquirente na data e local do documento</span>
+            <span class="text-size-8 ml-4">yye0-Processado por programa validado n.° 301/AGT/2021 © Kixipedidos 6.1 |
+                Os bens - serviços foram colocados à disposição do adquirente na data e local do documento</span>
         </div>
         <hr class="border border-success">
         <div style="font-size: xx-small">
