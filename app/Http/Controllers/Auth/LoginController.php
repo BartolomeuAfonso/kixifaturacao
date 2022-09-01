@@ -12,6 +12,7 @@ use GuzzleHttp\Client;
 use Exception;
 use Illuminate\Support\Facades\Session;
 
+
 class LoginController extends Controller
 {
     /*
@@ -46,9 +47,6 @@ class LoginController extends Controller
 
     public function entrar(Request $request)
     {
-
-
-
         try {
             $client = new Client(); //GuzzleHttp\Client
             $url = "http://kixiagenda.kixicredito.com/public/api/loginAPI";
@@ -59,27 +57,21 @@ class LoginController extends Controller
                     'password' => $request->password
                 ]
             ]);
-
-            //  dd(json_decode($response->getBody()));
-            $users = json_decode($response->getBody());
-            //    dd($users);
-
-
-
-            if ($response->getStatusCode() == "200") {
-                if (is_object($users)) {
-
-                    //  Auth::guard($user->username);,
-                    //     Auth::login($user, true);
-
-                    //    Auth::login($users);
-
-                    return redirect()->intended('home');
-                } else {
+            $user = json_decode($response->getBody());       
+            
+            if($response->getStatusCode() == "200"){
+                if(is_object($user)){ 
+                    Session::put('user',$user);
+                    if(Session::has('user')){
+                        return redirect()->intended('home');
+                    }else{
+                        return redirect()->intended('/');
+                    }                      
+                }else{
                     return redirect()->intended('/');
-                }
-            } else {
-                echo 0;
+                } 
+            }else{
+                return redirect()->intended('/');
             }
         } catch (RequestException $e) {
             echo GuzzleHttp\Psr7\str($e->getRequest());
@@ -87,21 +79,14 @@ class LoginController extends Controller
                 echo GuzzleHttp\Psr7\str($e->getResponse());
             }
         }
+
     }
 
 
     public function _login($request)
     {
-        if (\Auth::attempt([
-            'username'    => $request->username,
-        ])) {
-            return [
-                'success' => true
-            ];
-        } else {
-            return [
-                'success' => false
-            ];
-        }
+        
+        Session::flush();
+        return redirect()->intended('/');
     }
 }

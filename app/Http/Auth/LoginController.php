@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-
+use GuzzleHttp\Client;
+use Exception;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -43,37 +45,33 @@ class LoginController extends Controller
     }
 
 
-    public function loginAPI(Request $request)
+    public function entrar(Request $request)
     {
         try {
-            //  
-
             $client = new Client(); //GuzzleHttp\Client
-
-            //  $url = "http://192.168.5.83:8080/kixiagenda/public/api/loginAPI";
             $url = "http://kixiagenda.kixicredito.com/public/api/loginAPI";
 
-            $response = $client->request('GET', $url, [
+            $response = $client->request('POST', $url, [
                 'form_params' => [
                     'username' => $request->username,
                     'password' => $request->password
                 ]
             ]);
-
-            $user = json_decode($response->getBody());
-
-
-            if ($response->getStatusCode() == "200") {
-                //if(is_object($user)){ 
-                //dd($user);
-                Auth::login($user, true);
-
-                return redirect()->intended('home');
-                //}else{
+            $user = json_decode($response->getBody());       
+            
+            if($response->getStatusCode() == "200"){
+                if(is_object($user)){ 
+                    Session::put('user',$user);
+                    if(Session::has('user')){
+                        return redirect()->intended('home');
+                    }else{
+                        return redirect()->intended('/');
+                    }                      
+                }else{
+                    return redirect()->intended('/');
+                } 
+            }else{
                 return redirect()->intended('/');
-                //} 
-            } else {
-                echo 0;
             }
         } catch (RequestException $e) {
             echo GuzzleHttp\Psr7\str($e->getRequest());

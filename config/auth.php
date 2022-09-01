@@ -14,12 +14,10 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'admin',
+        'guard' => 'web',
         'passwords' => 'users',
     ],
 
-
-    'table' => 'user',
     /*
     |--------------------------------------------------------------------------
     | Authentication Guards
