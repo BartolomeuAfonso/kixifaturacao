@@ -84,7 +84,7 @@
             <div class="row align-items-center justify-content-xl-between">
                 <div class="col-xl-6 mx-auto">
                     <div class="copyright text-center text-xl-left text-darker">
-                        &copy; 2019 - KixiCrédito - Todos os Direitos Reservados</a>
+                        &copy; 2022 - Kixifaturação - Todos os Direitos Reservados</a>
                     </div>
                     <small class="text-light text-center">Template design &copy; 2018 <a href="https://www.creative-tim.com" class="text-light ml-1" target="_blank">Creative Tim </a></small>
                 </div>

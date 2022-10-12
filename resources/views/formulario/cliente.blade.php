@@ -46,23 +46,23 @@
                             @csrf
                             <div class="row">
                                 <div class="col-6">
-                                    <label for="nomeEmpresa" class="label mr-1">Denominação Oficial</label>
+                                    <label for="nomeEmpresa" class="label mr-1"><span style="color: red; font-weight: bold;">*</span> Denominação Oficial</label>
                                     <b><input name="nomeEmpresa" class="form-control" size="12"
                                             style="font-weight: bold;"></b>
                                 </div>
                                 <div id="mostra_bi" class="col-6">
-                                    <label class="label mr-1" for="nif">NIF</label>
+                                    <label class="label mr-1" for="nif"><span style="color: red"; font-weight: bold;>*</span> NIF</label>
                                     <input name="nif" id="nif" class="form-control" style="font-weight: bold;">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-6">
-                                    <label for="sector" class="label mr-1">Endereço</label>
+                                    <label for="sector" class="label mr-1"><span style="color: red; font-weight: bold;">*</span> Endereço</label>
                                     <input name="endereco" class="form-control" style="font-weight: bold;">
                                 </div>
 
                                 <div class="col-6">
-                                    <label for="sector" class="label mr-1">Telefone</label>
+                                    <label for="sector" class="label mr-1"><span style="color: red; font-weight: bold;">*</span> Telefone</label>
                                     <input name="telefone" id="telefone" class="form-control" style="font-weight: bold;">
                                 </div>
                             </div>
@@ -93,7 +93,7 @@
                                             <input name="socio1" class="form-control" style="font-weight: bold;">
                                         </div>
                                         <div class="col-4">
-                                            <label for="sector" class="label mr-1">NºB.I</label>
+                                            <label for="sector" class="label mr-1">NIF</label>
                                             <input name="nBi" class="form-control" style="font-weight: bold;">
                                         </div>
                                         <div class="col-4">
@@ -107,7 +107,7 @@
                                             <input name="socio2" class="form-control" style="font-weight: bold;">
                                         </div>
                                         <div class="col-4">
-                                            <label for="sector" class="label mr-1">NºB.I</label>
+                                            <label for="sector" class="label mr-1">NIF</label>
                                             <input name="nBi2" class="form-control" style="font-weight: bold;">
                                         </div>
                                         <div class="col-4">
@@ -118,6 +118,11 @@
                                 </div>
                             </div>
 
+                            <br>
+                            <div>
+                                <span style="color: red">* Todos os campos são obrigatório.</span>
+                            </div>
+                            <br>
                             <br>
                             <div class="row">
                                 <div class="col-12">

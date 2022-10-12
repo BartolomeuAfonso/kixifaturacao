@@ -199,7 +199,7 @@
     </div>
     <footer class="fixed-bottom p-2 small" style="height: 85px">
         <div>
-            <span class="text-size-8 ml-4">yye0-Processado por programa validado n.° 301/AGT/2021 © Kixipedidos 6.1 |
+            <span class="text-size-8 ml-4">mme8-Processado por programa validado n.° 301/AGT/2021 © Kixipedidos 6.1 |
                 Os bens - serviços foram colocados à disposição do adquirente na data e local do documento</span>
         </div>
         <hr class="border border-success">

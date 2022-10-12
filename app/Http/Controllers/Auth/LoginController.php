@@ -10,7 +10,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use GuzzleHttp\Client;
 use Exception;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use App\UsuarioModel;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Response;
+
 
 
 class LoginController extends Controller
@@ -45,11 +51,40 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+
     public function entrar(Request $request)
+    {
+
+        $user =  UsuarioModel::where('UtCodigo', "{" . $request->username . "}")
+            ->where('UtSenha', "{" . sha1($request->password) . "}")
+            ->first();
+
+        if (is_object($user)) {
+            Session::put('user', $user);
+            //  dd(Session::get('user')->UtCodigo);
+            //    dd($user);
+            return redirect()->intended('home');
+        } else {
+            return back()->with('error', 'Erro ao tentar fazer login.');
+        }
+    }
+
+
+    public function getUserImage()
+    {
+        $user = Auth::user();
+        $image = "" . $user->email . '-' . $user->id . '.jpg';
+        $file = Storage::disk('local')->get($image);
+        return Response::make($file, 200, ['Content-Type' => 'image/jpeg']);
+    }
+
+
+    /*
+    public function AutenticacaoAPI(Request $request)
     {
         try {
             $client = new Client(); //GuzzleHttp\Client
-            $url = "http://kixiagenda.kixicredito.com/public/api/loginAPI";
+            $url = "http://192.168.5.21/KIXIAPI/public/api/loginAPI";
 
             $response = $client->request('POST', $url, [
                 'form_params' => [
@@ -57,20 +92,20 @@ class LoginController extends Controller
                     'password' => $request->password
                 ]
             ]);
-            $user = json_decode($response->getBody());       
-            
-            if($response->getStatusCode() == "200"){
-                if(is_object($user)){ 
-                    Session::put('user',$user);
-                    if(Session::has('user')){
+            $user = json_decode($response->getBody());
+
+            if ($response->getStatusCode() == "200") {
+                if (is_object($user)) {
+                    Session::put('user', $user);
+                    if (Session::has('user')) {
                         return redirect()->intended('home');
-                    }else{
+                    } else {
                         return redirect()->intended('/');
-                    }                      
-                }else{
+                    }
+                } else {
                     return redirect()->intended('/');
-                } 
-            }else{
+                }
+            } else {
                 return redirect()->intended('/');
             }
         } catch (RequestException $e) {
@@ -79,13 +114,12 @@ class LoginController extends Controller
                 echo GuzzleHttp\Psr7\str($e->getResponse());
             }
         }
-
     }
-
+*/
 
     public function _login($request)
     {
-        
+
         Session::flush();
         return redirect()->intended('/');
     }

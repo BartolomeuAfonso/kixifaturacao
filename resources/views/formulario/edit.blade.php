@@ -1,12 +1,12 @@
 @extends('layouts.inicio')
 @section('content1')
     <section class="section dashboard">
-        <div class="row" style="margin-left:30%">
+        <div class="row"style="margin-left:30%; margin-top: 100px">
             <div class="col-lg-10">
                 <div class="card">
                     <div class="card-body">
-                        <div class="card" style="box-sizing: border-box;">
-                            <div  class="list-group-item list-group-item-action active" style="font-weight: bold; color: write">Editar Empresa</div>
+                        <div class="card">
+                            <div style="background:#005c3c;font-weight: bold; color:#fff;">Editar Empresa</div>
                         </div>
                         @if ($errors->all())
                             @foreach ($errors->all() as $error)
@@ -45,7 +45,7 @@
                             @csrf
                             <div class="row">
                                 <div class="col-8">
-                                    <label for="nomeEmpresa" class="label mr-1">Denominação Oficial</label>
+                                    <label for="nomeEmpresa" class="label mr-1"><span style="color: red; font-weight: bold;">*</span> Denominação Oficial</label>
                                     <b><input name="nomeEmpresa" value="{{ $cliente->nomeEmpresa }}"
                                             class="form-control" size="12" style="font-weight: bold;">
                                         <input name="cleCodigo" value="{{ $cliente->cleCodigo }}" class="form-control"
@@ -55,20 +55,20 @@
                                     </b>
                                 </div>
                                 <div class="col-4">
-                                    <label class="label mr-1" for="nif">NIF</label>
+                                    <label class="label mr-1" for="nif"><span style="color: red; font-weight: bold;">*</span> NIF</label>
                                     <input name="nif" class="form-control" value="{{ $cliente->nif }}"
                                         style="font-weight: bold;">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-6">
-                                    <label for="sector" class="label mr-1">Endereço</label>
+                                    <label for="sector" class="label mr-1"><span style="color: red; font-weight: bold;">*</span> Endereço</label>
                                     <input name="endereco" class="form-control" value="{{ $cliente->endereco }}"
                                         style="font-weight: bold;">
                                 </div>
 
                                 <div class="col-6">
-                                    <label for="sector" class="label mr-1">Telefone</label>
+                                    <label for="sector" class="label mr-1"><span style="color: red; font-weight: bold;">*</span> Telefone</label>
                                     <input name="telefone" class="form-control" value="{{ $cliente->telefone }}"
                                         style="font-weight: bold;">
                                 </div>
@@ -91,7 +91,7 @@
                                 </div>
                             </div>
                             <div class="card">
-                                <h5 class="card-header">Dados do Sócios</h5>
+                                <div style="background:#005c3c;font-weight: bold;color: #fff;">Dados do Sócios</div>
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-4">
@@ -100,7 +100,7 @@
                                                 style="font-weight: bold;">
                                         </div>
                                         <div class="col-4">
-                                            <label for="sector" class="label mr-1">NºB.I</label>
+                                            <label for="sector" class="label mr-1">NIF</label>
                                             <input name="nBi" class="form-control" value="{{ $cliente->nBi }}"
                                                 style="font-weight: bold;">
                                         </div>
@@ -116,7 +116,7 @@
                                                 style="font-weight: bold;">
                                         </div>
                                         <div class="col-4">
-                                            <label for="sector" class="label mr-1">NºB.I</label>
+                                            <label for="sector" class="label mr-1">NIF</label>
                                             <input name="nBi2" class="form-control" value="{{ $cliente->nBi2 }}"
                                                 style="font-weight: bold;">
                                         </div>
