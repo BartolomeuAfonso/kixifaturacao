@@ -61,8 +61,6 @@ class LoginController extends Controller
 
         if (is_object($user)) {
             Session::put('user', $user);
-            //  dd(Session::get('user')->UtCodigo);
-            //    dd($user);
             return redirect()->intended('home');
         } else {
             return back()->with('error', 'Erro ao tentar fazer login.');

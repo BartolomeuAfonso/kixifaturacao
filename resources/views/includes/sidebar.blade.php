@@ -22,10 +22,24 @@
             </ul>
         </li>
         <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#components-nav1" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-menu-button-wide"></i><span>Produto</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="components-nav1" class="nav-content collapse " data-bs-parent="#sidebar-produto">
+                <li class="nav-item"><a class="nav-link" href="{{ url('clientes') }}"> <i
+                            class="bi bi-circle"></i>Registo de Produto</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url('listaProduto') }}"> <i class="bi bi-circle"></i>Lista
+                        de Produtos</a></li>
+
+
+            </ul>
+        </li>
+        <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#components-fat" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-menu-button-wide"></i><span>Facturação</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="components-fat" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+               
                 <li class="nav-item"><a class="nav-link" href="{{ url('fatura') }}"> <i
                             class="bi bi-circle"></i>Inserção</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ url('listaFactura') }}"> <i
