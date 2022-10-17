@@ -21,6 +21,8 @@ Route::get('clientes', 'ClienteController@index');
 Route::post('registar', 'ClienteController@registarCliente');
 Route::get('lista', 'ClienteController@listaCliente');
 Route::get('listaProduto', 'ProdutoController@listaProduto');
+Route::get('produto', 'ProdutoController@index');
+Route::post('registarProduto', 'ProdutoController@registarProduto');
 Route::get('fatura', 'FaturaController@index');
 Route::get('recibo', 'FaturaController@indexRecibo');
 Route::get('listaFactura', 'FaturaController@listaFactura');

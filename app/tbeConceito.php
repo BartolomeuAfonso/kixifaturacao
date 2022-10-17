@@ -9,7 +9,14 @@ class tbeConceito extends Model
 {
     protected $table = "tbeConceito";
 
-    protected $fillable = ['ccoCodigo', 'ccoOrdem', 'SAFTProductType', 'ccoNome', 'ccoDescripcao', 'ccoAtivo'];
+    protected $fillable = ['id', 'ccoCodigo', 'ccoOrdem', 'SAFTProductType', 'ccoNome', 'ccoDescripcao', 'ccoAtivo', 'updated_at', 'created_at'];
+
+
+    public static function getProdutoID()
+    {
+        return tbeConceito::select('*')->count('ccoCodigo');
+    }
+
 
     public static function getProdutoActivo($data)
     {
@@ -32,7 +39,7 @@ class tbeConceito extends Model
             ->where('tbeConceito.ccoCodigo', '=', $codigoProduto)
             ->select('tbeConceito.ccoCodigo', 'tbeConceito.ccoNome', 'tbeConceito.ccoDescripcao', 'tbeIva.ivaPercentagem', 'tbeIva.SAFTTaxExemptionCode', 'tbeIva.ivaVerba', 'tbeIva.ivaRegime')
             ->get();
-       // dd($produtos);
+        // dd($produtos);
         return $produtos;
     }
 }

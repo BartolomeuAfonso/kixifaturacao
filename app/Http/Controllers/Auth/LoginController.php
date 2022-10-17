@@ -55,8 +55,8 @@ class LoginController extends Controller
     public function entrar(Request $request)
     {
 
-        $user =  UsuarioModel::where('UtCodigo', "{" . $request->username . "}")
-            ->where('UtSenha', "{" . sha1($request->password) . "}")
+        $user =  UsuarioModel::where('UtCodigo', $request->username)
+            ->where('UtSenha', sha1($request->password))
             ->first();
 
         if (is_object($user)) {

@@ -28,7 +28,7 @@
 
                         <!--ltrim eliminar primeiro caracter-->
                         <!--ltrim eliminar primeiro e ultimo caracter substr(ltrim(Session::get('user')->UtCodigo,Session::get('user')->UtCodigo[0]),0,-1)-->
-                        <span class="d-none d-md-block dropdown-toggle ps-2" style="color: white">{{substr(ltrim(Session::get('user')->nome,Session::get('user')->nome[0]),0,-1)}}</span>
+                        <span class="d-none d-md-block dropdown-toggle ps-2" style="color: white">{{Session::get('user')->Nombre01}}</span>
                     </a>
                      <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li>
