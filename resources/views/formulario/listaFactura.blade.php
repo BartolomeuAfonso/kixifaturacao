@@ -28,10 +28,10 @@
                                 <button type="submit" class="btn btn-primary mb-2" id="btnSubmeterFiltro"><i class="bi bi-search"></i> Buscar</button>
                             </div>
                         </div>
-                    </form>
+                    </form-->
                     <div class="row">
                         <div class="card-body">
-                            <table id="#" class="table datatable">
+                            <table id="table_id" class="table datatable">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -39,6 +39,8 @@
                                         <th>Loan Number</th>
                                         <th>Nome</th>
                                         <th>Data</th>
+                                        <th></th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -84,3 +86,24 @@
             </div>
     </section>
 @stop
+<script type="text/javascript" src="{{ asset('js/jquery-3.6.1.js') }}"></script>
+<script type="text/javascript" src="{{ asset('DataTables/datatables.min.js') }}"></script>
+<script>
+    $(document).ready(function() {
+        $('#table_id').DataTable({
+
+            "language": {
+                "search": "Procurar:",
+           //     "bInfo": false, // Desactivar show 
+                "bPaginate": true, // Desactivar pesquisa entre 1 a 10
+             //   "sInfo":"",
+                "sLengthMenu": "Mostrar _MENU_ Registo",
+                "sInfo": "Mostrar _START_ a _END_ de _TOTAL_ registos",
+                "sInfoFiltered": "(filtered from _MAX_ total entries)",
+            }
+
+
+
+        });
+    });
+</script>

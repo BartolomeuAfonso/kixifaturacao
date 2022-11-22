@@ -49,7 +49,7 @@
                                     <label for="codigo" class="label mr-1"><span
                                             style="color: red; font-weight: bold;">*</span> Código</label>
                                     <b><input name="codigo" id="codigo"class="form-control" size="12" style="font-weight: bold;"
-                                            maxlength="4"></b>
+                                            maxlength="4"  onkeyup="funcaoMaiscula()"></b>
                                 </div>
                                 <div id="mostra_bi" class="col-">
                                     <label class="label mr-1" for="nif"><span style="color: red"; font-weight:
@@ -105,3 +105,10 @@
     </div>
 </section>
 @stop
+
+<script>
+    function funcaoMaiscula() {
+      var x = document.getElementById("codigo");
+      x.value = x.value.toUpperCase();
+    }
+</script>

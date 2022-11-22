@@ -26,6 +26,7 @@ Route::post('registarProduto', 'ProdutoController@registarProduto');
 Route::get('fatura', 'FaturaController@index');
 Route::get('recibo', 'FaturaController@indexRecibo');
 Route::get('listaFactura', 'FaturaController@listaFactura');
+Route::get('listaFacturaAPI', 'FaturaController@listaFacturaAPI');
 Route::post('salvarFatura', 'FaturaController@salvarFatura');
 Route::post('salvarRecibo', 'FaturaController@salvarReciboManual');
 Route::get('editar/{id}', 'ClienteController@obterDados');

@@ -12,7 +12,7 @@
                 <div class="card" style=" margin-top: -8px">
                     <div class="row">
                         <div class="card-body">
-                            <table id="#" class="table datatable">
+                            <table id="table_id" class="table datatable">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -58,3 +58,25 @@
             </div>
     </section>
 @stop
+<script type="text/javascript" src="{{ asset('js/jquery-3.6.1.js') }}"></script>
+<script type="text/javascript" src="{{ asset('DataTables/datatables.min.js') }}"></script>
+<script>
+    $(document).ready(function() {
+        $('#table_id').DataTable({
+
+            "language": {
+                "search": "Procurar:",
+           //     "bInfo": false, // Desactivar show 
+                "bPaginate": true, // Desactivar pesquisa entre 1 a 10
+                "sInfo":"",
+                "sLengthMenu": "Mostrar _MENU_ Registo",
+                "sInfo": "Mostrar _START_ a _END_ de _TOTAL_ registos",
+                "sInfoFiltered": "(filtered from _MAX_ total entries)",
+              
+            }
+
+
+
+        });
+    });
+</script>

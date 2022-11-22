@@ -6,7 +6,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="card">
-                            <div style="background:#005c3c;font-weight: bold; color:#fff;">1. Registo de Empresa</div>
+                            <div style="background:#005c3c;font-weight: bold; color:#fff;">Registro de Cliente</div>
                         </div>
                         @if ($errors->all())
                             @foreach ($errors->all() as $error)
@@ -29,41 +29,85 @@
                             </div>
                         @endif
                         @if (session('error'))
-                            <div style="height:40px;background:#ffb459"
+                            <div style="height:40px;background:#f11414"
                                 class="alert icon-custom-alert  alert-outline-warning b-round fade show" role="alert">
                                 <div style="color:#000" class="alert-text">
                                     {{ session('error') }}
                                 </div>
                                 <div class="alert-close">
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true"><i class="mdi mdi-close text-danger"></i></span>
+                                        <span aria-hidden="true"><i class="mdi mdi-close text-red"></i></span>
                                     </button>
                                 </div>
                             </div>
                         @endif
-                        <form method="post" id="validarFormularioPessoa" action="{{ url('registar') }}"
-                            onsubmit="validate()">
+                        <form method="post" id="validarFormularioPessoa" action="{{ url('registar') }}">
                             @csrf
                             <div class="row">
+                                <label for="nomeEmpresa" class="label mr-1"><span
+                                        style="color: red; font-weight: bold;"></span> Tipo de Identidade</label>
                                 <div class="col-6">
-                                    <label for="nomeEmpresa" class="label mr-1"><span style="color: red; font-weight: bold;">*</span> Denominação Oficial</label>
-                                    <b><input name="nomeEmpresa" class="form-control" size="12"
-                                            style="font-weight: bold;"></b>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" value="Singular" name="tipoPessoa"
+                                            id="tipoPessoa" checked onclick="mudaestado(1)">
+                                        <label class="form-check-label" for="flexRadioDefault2">
+                                            Singular
+
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio"  value="Juridica"  name="tipoPessoa"
+                                            id="tipoPessoa" onclick="mudaestado(2)">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Jurídica
+
+                                        </label>
+                                    </div>
+
                                 </div>
-                                <div id="mostra_bi" class="col-6">
-                                    <label class="label mr-1" for="nif"><span style="color: red"; font-weight: bold;>*</span> NIF</label>
-                                    <input name="nif" id="nif" class="form-control" style="font-weight: bold;">
+                                <div class="col-6">
+                                    <div class="form-check">
+                                        <label for="nacionadade" class="label mr-1" style="margin-left: -20px"><span
+                                                style="color: red; font-weight: bold;"></span>  Nacionalidade(País)</label>
+                                        <select id="nacionadade" class="form-control select2bs4" name="nacionadade"
+                                            style="margin-top: 2px; margin-left: -20px">
+                                            <option value="" disabled selected>Nada Selecionado...</option>
+                                            @foreach ($pais as $paises)
+                                                <option value="{{ $paises->ppsSimbolo2 }}">
+                                                    {{ $paises->ppsPOR }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-6">
-                                    <label for="sector" class="label mr-1"><span style="color: red; font-weight: bold;">*</span> Endereço</label>
+                                    <label for="nomeEmpresa" class="label mr-1"><span
+                                            style="color: red; font-weight: bold;">*</span> Denominação Oficial</label>
+                                    <b><input name="nomeEmpresa" class="form-control" size="12"
+                                            style="font-weight: bold;"></b>
+                                </div>
+                                <div id="mostra_bi" class="col-6">
+                                    <label class="label mr-1" for="nif"><span style="color: red"; font-weight:
+                                            bold;>*</span> NIF</label>
+                                    <input name="nif" id="nif" class="form-control" style="font-weight: bold;"
+                                        maxlength="14" onclick="validaBI(document.getElementById('nif'))">
+                                    <label id="info-alert-2" style="color:red;font-size:14px;display:none">NIF inválido: valor introduzido não é correto.</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="sector" class="label mr-1"><span
+                                            style="color: red; font-weight: bold;">*</span> Endereço</label>
                                     <input name="endereco" class="form-control" style="font-weight: bold;">
                                 </div>
 
                                 <div class="col-6">
-                                    <label for="sector" class="label mr-1"><span style="color: red; font-weight: bold;">*</span> Telefone</label>
-                                    <input name="telefone" id="telefone" class="form-control" style="font-weight: bold;">
+                                    <label for="sector" class="label mr-1"><span
+                                            style="color: red; font-weight: bold;">*</span> Telefone</label>
+                                    <input name="telefone" id="telefone" class="form-control"
+                                        style="font-weight: bold;">
                                 </div>
                             </div>
                             <div class="row">
@@ -84,8 +128,8 @@
 
                                 </div>
                             </div>
-                            <div class="card" style="margin-top:10px">
-                                <div style="background:#005c3c;font-weight: bold;color: #fff;">2. Dados do Sócios</div>
+                            <div class="card" style="margin-top:10px;display:none" id="dadosSocios">
+                                <div style="background:#005c3c;font-weight: bold;color: #fff;">Dados dos Sócios</div>
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-4">
@@ -142,48 +186,51 @@
 <script type="text/javascript" src="{{ asset('js/jquery12.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/mask.js') }}"></script>
 <script>
-    function validate() {
-        var nif = document.getElementById('nif').value;
-        var validar = /^[0-9]{9}[a-zA-Z]{2}[0-9]{3}$/;
-        return validar.test(nif);
+
+    var validar = /^[0-9]{9}[a-zA-Z]{2}[0-9]{3}$/;
+    var numero = /^[0-9]{10}$/;
+
+    function mudaestado(estado) {
+        if (estado == 1) {
+            document.getElementById("dadosSocios").style.display = 'none';
+            return true;
+        } else {
+            document.getElementById("dadosSocios").style.display = 'block';
+            return false;
+        }
     }
 
-    $(document).ready(function() {
+    function validaBI(bilhete) {
+     var n = validar.exec(bilhete.value);
+     var nacionalidade =  document.getElementById("nome").value;
+  
+     var tipoIdentidade =  document.querySelector('input[name="tipoPessoa"]:checked').value;
 
-                $("#validarFormularioPessoa").validate({
-                    rules: {
-                        nif: {
-                            required: true,
-                            pattern: /^[0-9]{9}[a-zA-Z]{2}[0-9]{3}$/,
-                            minlength: 14,
-                            maxlength: 14
-                        },
-                    },
-                    messages: {
+     if(tipoIdentidade=='Singular' && nacionalidade=='AO' ){
+        if(!n){
+            window.alert("O número de idenficação fiscal encontra-se errado!");
+        }else{
+            document.getElementById('nif').style.Color='green';
+        }
+     }
+     
+     if(tipoIdentidade=='Juridica' && nacionalidade=='AO' ){
+      console.log(tipoIdentidade);
+        var  n = numero.exec(bilhete.value);
+        if(!n){
+            window.alert("O número de idenficação fiscal encontra-se errado!");
+        }else{
+            document.getElementById('nif').style.Color='green';
+          // alert("Obrigado, o seu número de idenficação está correcto");
+        }
+     } 
+     if(tipoIdentidade=='Singular' || tipoIdentidade=='Juridica' && nacionalidade!='AO'){
 
-                        nif: {
-                            required: "O número do Bilhete deve ser fornecido.",
-                            pattern: "O padrão do bilhete está inválido.",
-                            minlength: "O tamanho mínimo deve ser 14 dígitos",
-                            maxlength: "O tamanho máximo deve ser 14 dígitos"
-                        }
-                    },
-                    errorElement: "em",
-                    errorPlacement: function(error, element) {
-                        // Add the `invalid-feedback` class to the error element
-                        error.addClass("invalid-feedback");
-                        if (element.prop("type") === "checkbox") {
-                            error.insertAfter(element.next("label"));
-                        } else {
-                            error.insertAfter(element);
-                        }
-                    },
-                    highlight: function(element, errorClass, validClass) {
-                        $(element).addClass("is-invalid").removeClass("is-valid");
-                    },
-                    unhighlight: function(element, errorClass, validClass) {
-                        $(element).addClass("is-valid").removeClass("is-invalid");
-                    }
-                });
-            }
+
+     }
+
+    }
+
+   
+
 </script>

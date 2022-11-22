@@ -28,7 +28,8 @@
             <ul id="components-nav1" class="nav-content collapse " data-bs-parent="#sidebar-produto">
                 <li class="nav-item"><a class="nav-link" href="{{ url('produto') }}"> <i
                             class="bi bi-circle"></i>Registo de Produto</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ url('listaProduto') }}"> <i class="bi bi-circle"></i>Lista
+                <li class="nav-item"><a class="nav-link" href="{{ url('listaProduto') }}"> <i
+                            class="bi bi-circle"></i>Lista
                         de Produtos</a></li>
 
 
@@ -39,13 +40,16 @@
                 <i class="bi bi-menu-button-wide"></i><span>Facturação</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="components-fat" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-               
-                <li class="nav-item"><a class="nav-link" href="{{ url('fatura') }}"> <i
-                            class="bi bi-circle"></i>Inserção</a></li>
+
+                <li class="nav-item"><a class="nav-link" href="{{ url('fatura') }}"> <i class="bi bi-circle"></i>Emitir
+                        fatura</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ url('listaFactura') }}"> <i
-                            class="bi bi-circle"></i>Lista</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ url('recibo') }}"> <i
-                            class="bi bi-circle"></i>Inserir Recibos Manual</a></li>
+                            class="bi bi-circle"></i>Lista de fatura Manual</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url('recibo') }}"> <i class="bi bi-circle"></i>Inserir
+                        Recibos Manual</a></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('listaFacturaAPI') }}"> <i class="bi bi-circle"></i>Lista de fatura
+                    </a></li>
 
             </ul>
         </li>

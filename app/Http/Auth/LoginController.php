@@ -13,9 +13,7 @@ use App\UsuarioModel;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Session;
 
-
-class LoginController extends Controller
-{
+class LoginController extends Controller {
     /*
     |--------------------------------------------------------------------------
     | Login Controller
@@ -30,70 +28,32 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
+    * Where to redirect users after login.
+    *
+    * @var string
+    */
     protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('guest')->except('logout');
+    * Create a new controller instance.
+    *
+    * @return void
+    */
+
+    public function __construct() {
+        $this->middleware( 'guest' )->except( 'logout' );
     }
 
-    /*
-    public function entrar(Request $request)
-    {
-
-        $user = DB::connection('sqlsrv')->table('tKxUsUtilizador')->where('UtCodigo', $request->username) //select('SELECT * FROM products');
-            ->where('UtSenha', md5($request->password))
-            ->first();
-        if (is_object($user)) {
-            return redirect()->intended('home');
+    public function entrar( Request $request ) {
+        $user =  UsuarioModel::where( 'UtCodigo', $request->username )
+        ->where( 'UtSenha', sha1( $request->password ) )
+        ->first();
+        if ( is_object( $user ) ) {
+            Session::put( 'user', $user );
+            return redirect()->intended( 'home' );
         } else {
-            return back()->with('error', 'Erro ao tentar fazer login.');
+            return back()->with( 'error', 'Erro ao tentar fazer login.' );
         }
     }
-  */
-    
-    public function entrar(Request $request)
-    {
-        try {
-            $client = new Client(); //GuzzleHttp\Client
-            $url = "http://192.168.5.21/KIXIAPI/public/api/loginAPI";
 
-            $response = $client->request('POST', $url, [
-                'form_params' => [
-                    'username' => $request->username,
-                    'password' => $request->password
-                ]
-            ]);
-            $user = json_decode($response->getBody());       
-            
-            if($response->getStatusCode() == "200"){
-                if(is_object($user)){ 
-                    Session::put('user',$user);
-                    if(Session::has('user')){
-                        return redirect()->intended('home');
-                    }else{
-                        return redirect()->intended('/');
-                    }                      
-                }else{
-                    return redirect()->intended('/');
-                } 
-            }else{
-                return redirect()->intended('/');
-            }
-        } catch (RequestException $e) {
-            echo GuzzleHttp\Psr7\str($e->getRequest());
-            if ($e->hasResponse()) {
-                echo GuzzleHttp\Psr7\str($e->getResponse());
-            }
-        }
-    }
 }

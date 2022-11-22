@@ -1,0 +1,8 @@
+{
+    "db_facturas": {
+        "host_db": "KC-DTOP-DSO-10\\CONSOLIDADO",
+        "user_connect": "sa",
+        "psw_connect": "#ServDes16",
+        "bd_target": "dteKixiCredito"
+    }
+}
