@@ -48,7 +48,7 @@ class FaturaController extends Controller
     }
 
     public function listaFacturaAPI()
- {
+   {
 
     $produto = tbeCabecalho::listarProduto();
     dd($produto);

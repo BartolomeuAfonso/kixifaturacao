@@ -79,8 +79,11 @@ class tbeCabecalho extends Model {
     }
 
     public static function listarProduto() {
-        DB::disableQueryLog();
-        $produto = DB::connection( 'sqlsrv' )->table( 'tbeConceito' )->limit( 5 )->get();
+       
+        DB::purge('sqlsrv');
+        DB::reconnect('sqlsrv');
+        $produto = DB::connection('sqlsrv')->table('tbeConceito')->select('tbeConceito.ccoCodigo')->first();
+        dd($produto);
         return $produto;
     }
 

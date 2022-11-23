@@ -20,7 +20,7 @@ class ClienteController extends Controller
     use Uuid;
 
     public function index()
-     {
+ {
 
         $pais = clienteEmpresa::getPais();
         //   dd( $pais );
@@ -28,7 +28,7 @@ class ClienteController extends Controller
     }
 
     public function listaCliente()
-     {
+ {
         $listaCliente = clienteEmpresa::paginate( 10 );
         return view( 'formulario.listaCliente', compact( 'listaCliente' ) );
     }
@@ -36,13 +36,14 @@ class ClienteController extends Controller
     // Registar Cliente
 
     public function registarCliente( Request $request )
-     {
-        $contador = $this->getContador()->numerador + 1;
-        $capitalSocial = str_replace( '.', '', $request->capitalSocial );
+ {
 
         $validarBI = '/^[0-9]{9}[a-zA-Z]{2}[0-9]{3}$/';
         $validarNIF = '/^[0-9]{10}$/';
-
+        $contador = $this->getContador()->numerador + 1;
+        $capitalSocial = str_replace( '.', '', $request->capitalSocial );
+        $nomeCliente = clienteEmpresa::getNome( $request->nomeEmpresa );
+        $nif = clienteEmpresa::getNIF( $request->nif );
 
         $validator = Validator::make(
             $request->all(),
@@ -63,9 +64,40 @@ class ClienteController extends Controller
                 ->withInput();
             } else {
 
-                if ( preg_match( $validarBI, $request->nif ) ||  preg_match( $validarNIF, $request->nif )) {
-                    $nomeCliente = clienteEmpresa::getNome( $request->nomeEmpresa );
-                    $nif = clienteEmpresa::getNIF( $request->nif );
+                if ( $request->nacionadade == 'AO' ) {
+                    if ( preg_match( $validarBI, $request->nif ) ||  preg_match( $validarNIF, $request->nif ) ) {
+
+                        if ( !empty( $nomeCliente ) || !empty( $nif ) ) {
+
+                            return back()->with( 'error', 'Já existe Nome ou NIF na base de Dados' );
+
+                        } else {
+                            $cliente = new clienteEmpresa();
+                            $Uuid = Str::uuid()->toString();
+                            $cliente->id =   $Uuid;
+                            $cliente->cleCodigo = 'FM/P/K/' . $contador;
+                            $cliente->nomeEmpresa = $request->input( 'nomeEmpresa' );
+                            $cliente->nif = $request->input( 'nif' );
+                            $cliente->socio = $request->input( 'socio' );
+                            $cliente->socio1 = $request->input( 'socio1' );
+                            $cliente->sector = $request->input( 'sector' );
+                            $cliente->telefone = $request->input( 'telefone' );
+                            $cliente->capitalSocial = $capitalSocial;
+                            $cliente->objectoSocial = $request->input( 'objectoSocial' );
+                            $cliente->nBi = $request->input( 'nBi' );
+                            $cliente->nBi2 = $request->input( 'nBi2' );
+                            $cliente->dataConstituicao = $request->input( 'dataConstituicao' );
+                            $cliente->endereco = $request->input( 'endereco' );
+                            $cliente->numerador = $contador;
+                            $cliente->save();
+                            return back()->with( 'sucesso', 'Dados salvo com sucesso' );
+
+                        }
+
+                    } else {
+                        return back()->with( 'error', 'O número de idenficação fiscal encontra-se errado' );
+                    }
+                } else {
 
                     if ( !empty( $nomeCliente ) || !empty( $nif ) ) {
 
@@ -93,13 +125,10 @@ class ClienteController extends Controller
                         return back()->with( 'sucesso', 'Dados salvo com sucesso' );
 
                     }
-
-                } else {
-                    return back()->with( 'error', 'O número de idenficação fiscal encontra-se errado' );
                 }
 
             }
-        } catch (Exception $e ) {
+        } catch ( Exception $e ) {
             return back()->with( 'error', 'Erro ao tentar registar cliente.' );
         }
     }
@@ -107,7 +136,7 @@ class ClienteController extends Controller
     // Obter ultimo elemento da Tabela Cliente
 
     public function getContador()
-     {
+ {
 
         $contador = clienteEmpresa::getContador();
 
@@ -115,13 +144,13 @@ class ClienteController extends Controller
     }
 
     public function obterDados( $id )
-     {
+ {
         $cliente = clienteEmpresa::getNome( $id );
         return view( 'formulario.edit', compact( 'cliente' ) );
     }
 
     public function editar( Request $request )
-     {
+ {
         $validator = Validator::make(
             $request->all(),
             [
