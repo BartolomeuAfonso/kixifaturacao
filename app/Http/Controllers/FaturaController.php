@@ -18,6 +18,7 @@ use App\tbeCabecalhoManual;
 use App\tbeDetalheManual;
 use PDF;
 use Exception;
+use Http;
 
 class FaturaController extends Controller
 {
@@ -293,10 +294,13 @@ class FaturaController extends Controller
     {
         try {
             $client = new Client();
-            $url = 'http://192.168.5.21/KIXIAPI/public/api/listarFaturaAPI';
-            $response = $client->request('GET', $url);
+          //  $url = 'http://192.168.5.21/KIXIAPI/public/api/listarFaturaAPI';
+        
+            $response = Http::retry(3, 100)->get('192.168.5.21/KIXIAPI/public/api/listarFaturaAPI');
+          //  $response = $client->request('GET', $url);
             if ($response->getStatusCode() == "200") {
                 $factura = json_decode($response->getBody());
+
                 return view('formulario.listaFacturaAPI', compact('factura'));
             } else {
                 return response()->json(['status', "error"]);
@@ -319,14 +323,15 @@ class FaturaController extends Controller
         $factura = 'http://192.168.5.21/KIXIAPI/public/api/getDadosFactura/' . $codigoFactura;
         $factura = $client->request('GET', $factura);
         $factura = json_decode($factura->getBody());
+      
+        $factura_item = 'http://192.168.5.21/KIXIAPI/public/api/getDadosItemFacturaAPI/' . $codigoFactura;
+        $factura_item = $client->request('GET', $factura_item);
+        $factura_item = json_decode($factura_item->getBody());
+        
         $cliente = 'http://192.168.5.21/KIXIAPI/public/api/ClienteEspecifico/' . $factura[0]->cleCodigo;
         $cliente = $client->request('GET', $cliente);
         $cliente = json_decode($cliente->getBody());
         $tipoFactura = substr($factura[0]->ccoNumero, 0, 2);
-        return PDF::loadView('relatorio.Invoice1', compact('dadosFactura', 'versao', 'cliente', 'factura', 'tipoFactura'))->setPaper('A4', 'portrait')->stream('Fatura.pdf');
-     
-
-//        return PDF::loadView('relatorio.Invoice1', compact('dadosFactura', 'versao', 'cliente', 'factura', 'tipoFactura'))->setPaper('A4', 'portrait')->download('Fatura.pdf');
-
+        return PDF::loadView('relatorio.Invoice1', compact('dadosFactura', 'versao', 'cliente', 'factura','factura_item', 'tipoFactura'))->setPaper('A4', 'portrait')->stream('Fatura.pdf');
     }
 }

@@ -28,13 +28,19 @@
                 </tr>
             </table>
         </div>
+        <div class="col-5 ml-auto text-right">
+            <h6 class="font-weight-bolder">Factura {{ $factura[0]->ccoNumero }} </h6>
+            <p>{{ $versao }}</p>
+        </div>
 
     </div>
     <div class="row mb-4">
         <div class="col-5 ml-auto small">
             Exmo.(a) Sr.(a)
-            <div></div>
-
+            <div>{{ $cliente[0]->cleNomeCliente }}</div>
+            <div>Endereço:{{ $cliente[0]->cleEndereco }}</div>
+            <div>
+                NIF: </div>
         </div>
     </div>
     <div class="row m-0 p-0">
@@ -45,10 +51,16 @@
                     <th class="p-0 m-0">Data Vencimento</th>
                     <th class="p-0 m-0">Referente</th>
                     <th class="p-0 m-0">Cod. Entidade</th>
-                    <th class="p-0 m-0">Moeda</th>
-                    <th class="p-0 m-0">EURO</th>
+                    <th class="p-0 m-0">Moeda</th>       
                 </tr>
-
+                <tr class="p-0 m-0">
+                    <td class="p-0 m-0">{{ date('Y-m-d', strtotime($factura[0]->ccoDataEmissao)) }}</td>
+                    <td class="p-0 m-0">
+                        {{ date('Y-m-d', strtotime('+30 days', strtotime($factura[0]->ccoDataEmissao))) }}</td>
+                    <td class="p-0 m-0"></td>
+                    <td class="p-0 m-0">{{ $factura[0]->cleCodigo }}</td>
+                    <td class="p-0 m-0">AKZ</td> 
+                </tr>
             </table>
         </div>
     </div>
@@ -68,10 +80,22 @@
                         <th class="m-0 p-0 text-center">Total</th>
                     </tr>
                 </thead>
-
-
-
-
+                <tbody>
+                    @foreach ($factura_item as $fatura_itens)
+                        <tr>
+                            <td>{{ $fatura_itens->designacao }}</td>
+                            <td class="m-0 p-0 text-center">1</td>
+                            <td class="m-0 p-0 text-center">un</td>
+                            <td class="m-0 p-0 text-center">
+                                {{ number_format($fatura_itens->dteMontante, 2, '.', ' ') }}</td>
+                            <td class="m-0 p-0 text-center">{{ $fatura_itens->IVA }}</td>
+                            <td class="m-0 p-0 text-center">Codigo</td>
+                            <td class="m-0 p-0 text-center">
+                                {{ number_format($fatura_itens->dteMontante , 2, '.', ' ') }}
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
             </table>
         </div>
     </div>
@@ -91,9 +115,20 @@
                     </tr>
                 </thead>
                 <tbody>
-
-
-
+                    <tr>
+                        <td class="m-0 p-0 text-center">
+                            @if ($fatura_itens->IVA == 14)
+                                (IVA)
+                            @else
+                                0
+                            @endif
+                        </td>
+                        <td>{{ number_format($factura[0]->ccoTotal - $factura[0]->ccoIVA, 2, '.', ' ') }}</td>
+                        <td>
+                            {{ number_format($factura[0]->ccoIVA, 2, '.', ' ') }}</td>
+                        <td style="margin-left: -5px">
+                            {{ $fatura_itens->SAFTTaxExemptionCode }}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>

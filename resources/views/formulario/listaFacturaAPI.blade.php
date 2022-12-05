@@ -1,6 +1,6 @@
 @extends('layouts.inicio')
 @section('content1')
-    <section class="section dashboard" style="margin-top:100px">
+    <section class="section dashboard" style="margin-top:50px">
         <div class="row" style="margin-left:15%;">
 
             <div class="col-lg-12" style="padding-left: 50px; padding-right: 50px; margin-top:50px;">
@@ -22,6 +22,7 @@
                                         <th>Telefone</th>
                                         <th>Data</th>
                                         <th></th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -40,6 +41,12 @@
                                                         target="_blank"><i class="bi bi-printer-fill"></i> Reemprimir
                                                     </a>
                                                 </td>
+                                                <td><a type="button" class="btn btn-primary rounded-pill"
+                                                    style="margin-right: 5px"
+                                                    href=''
+                                                    target="_blank"><i class="bi bi-envelope-check-fill"></i> Enviar
+                                                </a>
+                                            </td>
                                             </tr>
                                         @endforeach
                             

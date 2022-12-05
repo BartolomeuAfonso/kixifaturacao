@@ -47,7 +47,7 @@ class FaturaControllerAPI extends Controller
 
         $codigoFactura = "'$codigoFactura'";
         $fatura = DB::connection('sqlsrv2')->select('SELECT C.ccoNome AS designacao , F1.dteMontante AS dteMontante,I.ivaPercentagem AS IVA, I.SAFTTaxExemptionCode AS SAFTTaxExemptionCode FROM Fatura.tbeDetalhe AS F1 INNER JOIN Fatura.tbeConceito C ON F1.ccoCodigo = C.ccoCodigo 
-        INNER JOIN Fatura.tbeIva I ON I.ccoCodigo = C.ccoCodigo WHERE F.ccoNumero=' . $codigoFactura . '');
+        INNER JOIN Fatura.tbeIva I ON I.ccoCodigo = C.ccoCodigo WHERE F1.ccoNumero=' . $codigoFactura . '');
 
         return $fatura;
     }

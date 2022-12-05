@@ -4,7 +4,7 @@
     <header id="header" class="header fixed-top d-flex align-items-center" style="background:#005c3c ">
 
         <div class="d-flex align-items-center justify-content-between">
-            <a href="{{url('home')}}" class="logo d-flex align-items-center">
+            <a href="{{url('home')}}" class="logo d-flex align-items-center" style="text-decoration:none">
                 <!--img src="" width="80" class="img img-fluid"-->
                 <span class="d-none d-lg-block" style="color:aliceblue">
                     Kixi Faturação

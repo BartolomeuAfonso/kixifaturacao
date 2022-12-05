@@ -48,7 +48,7 @@
                 <li class="nav-item"><a class="nav-link" href="{{ url('recibo') }}"> <i class="bi bi-circle"></i>Inserir
                         Recibos Manual</a></li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('listaFacturaAPI') }}"> <i class="bi bi-circle"></i>Lista de fatura
+                    <a class="nav-link" href="{{ url('listaFacturaAPI') }}"> <i class="bi bi-circle"></i>Lista de fatura da Consolidado
                     </a></li>
 
             </ul>

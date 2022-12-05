@@ -1,6 +1,6 @@
 @extends('layouts.inicio')
 @section('content1')
-    <section class="section dashboard" style="margin-top:100px">
+    <section class="section dashboard" style="margin-top:50px">
         <div class="row" style="margin-left:15%;">
 
             <div class="col-lg-12" style="padding-left: 50px; padding-right: 50px; margin-top:50px;">
