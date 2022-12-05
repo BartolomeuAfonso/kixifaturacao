@@ -34,6 +34,9 @@ Route::post('atualizar', 'ClienteController@editar');
 Route::get('impressao/{codigoFactura}/{codigo}', 'FaturaController@ImprimirFatura');
 Route::get('buscar', 'FaturaController@buscarFactura');
 Route::get('emitir/{codigoFactura}', 'FaturaController@emitirServico');
+Route::get('impressaoAPI/{codigoFactura}/{codigo}', 'FaturaController@ImprimirFaturaAPI');
+Route::post('sendemail', 'EmailController@sendmail');
+Route::get('email', 'EmailController@index');
 //Route::post('salvarFatura1', 'FaturaController@salvarFaturaNota');
 
 
@@ -53,5 +56,12 @@ Route::get('home', function () {
 
 });
 //Route::get('home', 'HomeController@index');
+
+////// Faturacao ////
+Route::get('listarFaturaAPI', 'FaturaControllerAPI@listarFaturaAPI');
+Route::get('getDadosFactura/{codigoFactura}', 'FaturaControllerAPI@getDadosFacturaAPI');
+Route::get('getDadosEmpresa', 'FaturaControllerAPI@getDadosEmpresaAPI');
+Route::get('ClienteEspecifico/{cliente}', 'FaturaControllerAPI@ClienteEspecificoAPI');
+
 
 Auth::routes();

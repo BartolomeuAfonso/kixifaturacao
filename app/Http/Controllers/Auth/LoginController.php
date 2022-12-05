@@ -64,45 +64,6 @@ class LoginController extends Controller {
         return Response::make( $file, 200, [ 'Content-Type' => 'image/jpeg' ] );
     }
 
-    /*
-
-    public function AutenticacaoAPI( Request $request ) {
-        try {
-            $client = new Client();
-            //GuzzleHttp\Client
-            $url = 'http://192.168.5.21/KIXIAPI/public/api/loginAPI';
-
-            $response = $client->request( 'POST', $url, [
-                'form_params' => [
-                    'username' => $request->username,
-                    'password' => $request->password
-                ]
-            ] );
-            $user = json_decode( $response->getBody() );
-
-            if ( $response->getStatusCode() == '200' ) {
-                if ( is_object( $user ) ) {
-                    Session::put( 'user', $user );
-                    if ( Session::has( 'user' ) ) {
-                        return redirect()->intended( 'home' );
-                    } else {
-                        return redirect()->intended( '/' );
-                    }
-                } else {
-                    return redirect()->intended( '/' );
-                }
-            } else {
-                return redirect()->intended( '/' );
-            }
-        } catch ( RequestException $e ) {
-            echo GuzzleHttp\Psr7\str( $e->getRequest() );
-            if ( $e->hasResponse() ) {
-                echo GuzzleHttp\Psr7\str( $e->getResponse() );
-            }
-        }
-    }
-    */
-
     public function _login( $request ) {
 
         Session::flush();

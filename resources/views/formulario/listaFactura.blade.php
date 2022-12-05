@@ -44,7 +44,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if (!empty($factura) && $factura->count())
                                         @foreach ($factura as $faturas)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
@@ -72,14 +71,9 @@
                                                 </td>
                                             </tr>
                                         @endforeach
-                                    @else
-                                        <tr>
-                                            <td colspan="10">There are no data.</td>
-                                        </tr>
-                                    @endif
                                 </tbody>
                             </table>
-                            {!! $factura->appends(Request::all())->links() !!}
+                           
                         </div>
                     </div>
                 </div>

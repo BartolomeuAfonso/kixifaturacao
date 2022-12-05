@@ -23,6 +23,7 @@
     <link href="{{ asset('vendor/quill/quill.bubble.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('vendor/remixicon/remixicon.css')}} " rel="stylesheet" type="text/css" />
     <link href="{{ asset('vendor/simple-datatables/style.css')}} " rel="stylesheet" type="text/css" />
+    <link href="{{ asset('DataTables/dataTables.css')}} " rel="stylesheet" type="text/css" />
 
 
 </head>
@@ -34,6 +35,7 @@
 
     <!-- App js -->
     <script src="{{ asset('js/app.min.js') }}"></script>
+    <script src="{{ url('js/main.js') }}"></script>
     <script src="{{ asset('vendor/apexcharts/apexcharts.min.js')}}"></script>
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{ asset('vendor/chart.js/chart.min.js')}}"></script>
@@ -41,7 +43,9 @@
     <script src="{{ asset('vendor/quill/quill.min.js')}}"></script>
     <script src="{{ asset('vendor/simple-datatables/simple-datatables.js')}}"></script>
     <script src="{{ asset('vendor/tinymce/tinymce.min.js')}}"></script>
-    <script src="{{ asset('vendor/php-email-form/validate.js')}}"></script>                                 
+    <script src="{{ asset('vendor/php-email-form/validate.js')}}"></script>       
+    <script type="text/javascript" src="{{ asset('js/jquery-3.6.1.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('DataTables/datatables.min.js') }}"></script>                          
     <!-- jQuery  -->
 </body>
 </html>

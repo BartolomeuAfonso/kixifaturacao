@@ -11734,7 +11734,7 @@
 			"sInfoEmpty": "Mostrar 0 to 0 of 0 Registo",
 	
 	
-			/**
+			/**0
 			 * When a user filters the information in a table, this string is appended
 			 * to the information (`info`) to give an idea of how strong the filtering
 			 * is. The variable _MAX_ is dynamically updated.

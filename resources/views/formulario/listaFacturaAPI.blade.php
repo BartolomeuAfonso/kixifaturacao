@@ -19,48 +19,33 @@
                                         <th>Nº Factura</th>
                                         <th>Loan Number</th>
                                         <th>Nome</th>
+                                        <th>Telefone</th>
                                         <th>Data</th>
-                                        <th></th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if (!empty($factura) && $factura->count())
+                                  
                                         @foreach ($factura as $faturas)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $faturas->ccoNumero }}</td>
                                                 <td>{{ $faturas->cleCodigo }}</td>
                                                 <td>{{ $faturas->nomeCliente }}</td>
+                                                <td>{{ $faturas->cleTelefone }}</td>
                                                 <td>{{ $faturas->ccoDataEmissao }}</td>
                                                 <td><a type="button" class="btn btn-primary rounded-pill"
                                                         style="margin-right: 5px"
-                                                        href='{{ url('impressao/' . base64_encode($faturas->ccoNumero) . '/2') }}'
+                                                        href='{{ url('impressaoAPI/' . base64_encode($faturas->ccoNumero) . '/1') }}'
                                                         target="_blank"><i class="bi bi-printer-fill"></i> Reemprimir
                                                     </a>
                                                 </td>
-
-                                                <td>
-                                                    @if(substr($faturas->ccoNumero , 0, 2) =='GF')
-                                                        <a type="button" class="btn btn-danger  rounded-pill"
-                                                        style="margin-right: 5px"
-                                                        href='{{ url('emitir/' . base64_encode($faturas->ccoNumero)) }}'
-                                                        target="_blank"><i class="bi bi-trash3-fill"></i> Notas e Débitos
-                                                    </a>
-                                                @else
-
-                                                @endif          
-                                                </td>
                                             </tr>
                                         @endforeach
-                                    @else
-                                        <tr>
-                                            <td colspan="10">There are no data.</td>
-                                        </tr>
-                                    @endif
+                            
                                 </tbody>
                             </table>
-                            {!! $factura->appends(Request::all())->links() !!}
+                           
                         </div>
                     </div>
                 </div>
