@@ -6,7 +6,7 @@
         <div class="d-flex align-items-center justify-content-between">
             <a href="{{url('home')}}" class="logo d-flex align-items-center" style="padding:20px">
                 <span class="d-none d-lg-block" style="color:aliceblue">
-                     <img src="img/KP23.png" width="50px" height="50px" class="img img-fluid"-->
+                     <img src="img/KP23.png" width="35px" height="50px" class="img img-fluid"-->
                 </span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn" style="color:aliceblue"></i>
@@ -21,7 +21,7 @@
                         src="img/users/{{Session::get('user')->UtCodigo}}<?php echo '.jpg'?>"
                         alt="user-image"
                         class="rounded-circle"
-                        width="45px"
+                        width="35px"
                         height="50px"/>
                 
                         <span class="d-none d-md-block dropdown-toggle ps-2" style="color: white">{{Session::get('user')->Nombre01}}</span>

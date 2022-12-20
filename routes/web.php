@@ -51,7 +51,7 @@ Route::post('entrar', 'Auth\LoginController@entrar');
 
 
 Route::get('home', function () {
-    return view('layouts.inicio');
+    return view('layouts.inicio1');
     // dd('Teste');
 
 });

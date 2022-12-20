@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.app1')
 @section('content')
 
  <!-- TopBar-->
  @include('includes.topbar')
 
- <div style="background:#f8f9fe;">
+ <div>
 
     <!-- SIDE MENU BAR-->
     @include('includes.sidebar')

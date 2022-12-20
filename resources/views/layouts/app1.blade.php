@@ -27,10 +27,13 @@
     <link href="{{ asset('fontawesome-free-6.2.1-web/css/all.css')}} " rel="stylesheet" type="text/css" />
 
 </head>
-<body class="account-body" style="background:#f8f9fe;">
+<body class="account-body" style="background:#f8f9fe;  background-image: url('img/logokixi.png'); background-repeat: no-repeat, repeat;background-position: center;  background-size: 300px 100px;margin-top: 50%">
     <!--style="background:#f8f9fe;  background-image: url('img/logokixi.png'); background-size: 300px 100px; background-repeat: no-repeat, repeat;background-position: center; margin-top: 50%"-->
     <!-- Inicio da Content -->
         @yield('content')
+
+     
+       
         
     <!-- Fim da Content -->
 
