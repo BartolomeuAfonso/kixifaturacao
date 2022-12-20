@@ -1,16 +1,16 @@
 <!-- Left Sidenav -->
-<aside id="sidebar" class="sidebar" style="background:#f8f9fe ">
+<aside id="sidebar" class="sidebar" style="background:#FFFFFF">
 
-    <ul class="sidebar-nav" id="sidebar-nav">
-        <li class="nav-item">
+    <ul class="sidebar-nav" id="sidebar-nav" >
+        <li class="nav-item" >
             <a class="nav-link " href="{{ url('home') }}">
-                <i class="bi bi-grid"></i>
-                <span>Módulo Facturação</span>
+                <i class="fa-solid fa-grip" style="color: #005c3c"></i>
+                <span style="color: #000000;font-weight: bold;" >Módulo Facturação</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-menu-button-wide"></i><span>Clientes</span><i class="bi bi-chevron-down ms-auto"></i>
+            <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#" style="background:#005c3c ">
+                <i class="fa-regular fa-user" style="color:#F89C1C"></i><span style="color:#F89C1C; padding-left: 10px"> Clientes</span><i class="bi bi-chevron-down ms-auto" style="color:#ffff"></i>
             </a>
             <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li class="nav-item"><a class="nav-link" href="{{ url('clientes') }}"> <i
@@ -22,8 +22,8 @@
             </ul>
         </li>
         <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#components-nav1" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-menu-button-wide"></i><span>Produto</span><i class="bi bi-chevron-down ms-auto"></i>
+            <a class="nav-link collapsed" data-bs-target="#components-nav1" data-bs-toggle="collapse" href="#" style="background:#005c3c ">
+                <i class="fab fa-stack-overflow" style="color:#F89C1C"></i><span  style="color:#F89C1C">Produto</span><i class="bi bi-chevron-down ms-auto" style="color:#ffff"></i>
             </a>
             <ul id="components-nav1" class="nav-content collapse " data-bs-parent="#sidebar-produto">
                 <li class="nav-item"><a class="nav-link" href="{{ url('produto') }}"> <i
@@ -36,8 +36,8 @@
             </ul>
         </li>
         <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#components-fat" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-menu-button-wide"></i><span>Facturação</span><i class="bi bi-chevron-down ms-auto"></i>
+            <a class="nav-link collapsed" data-bs-target="#components-fat" data-bs-toggle="collapse" href="#" style="background:#005c3c ">
+                <i class="fa-regular fa-file-lines" style="color:#F89C1C"></i><span  style="color:#F89C1C">Facturação</span><i class="bi bi-chevron-down ms-auto"  style="color:#ffff"></i>
             </a>
             <ul id="components-fat" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 

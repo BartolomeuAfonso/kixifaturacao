@@ -1,20 +1,16 @@
 
 <!-- Top Bar Start -->
-<div class="topbar" style="background:#005c3c">
+<div class="topbar" style="background:#005c3c ">
     <header id="header" class="header fixed-top d-flex align-items-center" style="background:#005c3c ">
 
         <div class="d-flex align-items-center justify-content-between">
-            <a href="{{url('home')}}" class="logo d-flex align-items-center" style="text-decoration:none">
-                <!--img src="" width="80" class="img img-fluid"-->
+            <a href="{{url('home')}}" class="logo d-flex align-items-center" style="padding:20px">
                 <span class="d-none d-lg-block" style="color:aliceblue">
-                    Kixi Faturação
+                     <img src="img/KP23.png" width="50px" height="50px" class="img img-fluid"-->
                 </span>
             </a>
-            <i class="bi bi-list toggle-sidebar-btn" style="color:aliceblue
-            "></i>
-        </div><!-- End Logo -->
-
-        
+            <i class="bi bi-list toggle-sidebar-btn" style="color:aliceblue"></i>
+        </div>
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
                 <li class="nav-item dropdown pe-3">
