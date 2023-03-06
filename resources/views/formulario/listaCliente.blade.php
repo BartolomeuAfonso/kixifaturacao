@@ -2,13 +2,11 @@
 @section('content1')
     <section class="section dashboard" style="margin-top:100px">
         <div class="row" style="margin-left:15%; ">
-            <div class="col-lg-12" style="padding-left: 50px; padding-right: 50px; margin-top:20px">
+            <div class="col-lg-12" style="padding-left: 50px; padding-right: 50px; margin-top:10px">
                 <div class="card">
-
-                    <div style="background:#005c3c; color:#fff; font-weight: bold;" aria-current="true">
-                        Lista de Clientes
+                    <div style="background:#005c3c;  color:#fff; font-weight: bold;" aria-current="true">
+                        <h3>Lista de Clientes</h3>
                     </div>
-
                     <div class="row">
                         <div class="card-body">
                             <table id="table_id" class="table datatable">

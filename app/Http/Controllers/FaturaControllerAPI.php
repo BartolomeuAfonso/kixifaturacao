@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\DB;
 class FaturaControllerAPI extends Controller
 {
 
+    protected $fieldInvoiceNo = "LEFT(ccoNumero, 2)+ ' '+SUBSTRING(ccoNumero,3,7)+LTRIM(RTRIM(STR(CAST(RIGHT(ccoNumero,6) as int),10,0)))";
+    protected $fieldInvoiceNORC = "LEFT(SAFTInvoiceNo, 2)+ ' '+SUBSTRING(SAFTInvoiceNo,3,7)+LTRIM(RTRIM(STR(CAST(RIGHT(SAFTInvoiceNo,6) as int),10,0)))";
+
     public static function listarFaturaAPI()
     {
 
@@ -51,4 +54,28 @@ class FaturaControllerAPI extends Controller
 
         return $fatura;
     }
+
+    public function getInformacaoFiltro($data1, $data2)
+    {
+      $RG = "'GF'";
+      $datainicio =  "'$data1'";
+      $dataFim =  "'$data2'";
+      $sql = DB::connection('sqlsrv2')->select('SELECT count(*) as totalRegistos, Max(ccoDataEmissao) dataFim, Min(ccoDataEmissao) dataInicio, DATEDIFF(DAY, Min(ccoDataEmissao),Max(ccoDataEmissao)) periodo from Fatura.tbeCabecalho where ccoHash is null and LEFT(ccoNumero, 2) != ' . $RG . ' and ccoDataEmissao >= ' . $datainicio . ' and ccoDataEmissao <= ' . $dataFim . '');
+      return response()->json($sql);
+    }
+
+    public function getRegistoPeriodo($dataInicio, $dataFim)
+    {
+        $RG = "'RG'";
+        $sql = DB::connection('sqlsrv2')->select('SELECT *, ccoNumero as InvoiceNo from Fatura.tbeCabecalho where ccoHash is null and LEFT(ccoNumero, 2) != ' . $RG . '  and ccoDataEmissao >= ' . $dataInicio . ' and ccoDataEmissao <= ' . $dataFim . ' order by ccoNumero ASC');
+         return $sql;
+    }
+
+    public function getListaFacturasPendentes()
+    {
+        $RG = "'RG'";
+        $sql = DB::connection('sqlsrv2')->select('SELECT COUNT(*) as totalFacturas, LEFT(cleCodigo, 2) FROM Fatura.tbeCabecalho where ccoHash is null and LEFT(ccoNumero, 2) != ' . $RG . ' group by LEFT(cleCodigo, 2)');
+        return $sql;
+    }
+
 }

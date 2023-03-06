@@ -3,7 +3,7 @@
     <section class="section dashboard" style="margin-top:100px">
         <div class="row" style="margin-left:15%;">
 
-            <div class="col-lg-12" style="padding-left: 50px; padding-right: 50px; margin-top:50px;">
+            <div class="col-lg-12" style="padding-left: 50px; padding-right: 50px; margin-top:10px;">
                
                 <div style="background:#005c3c;  color:#fff; font-weight: bold;" aria-current="true">
                     <h3>Lista de Produtos</h3>

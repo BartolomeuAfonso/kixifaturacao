@@ -27,6 +27,8 @@ Route::get('fatura', 'FaturaController@index');
 Route::get('recibo', 'FaturaController@indexRecibo');
 Route::get('listaFactura', 'FaturaController@listaFactura');
 Route::get('listaFacturaAPI', 'FaturaController@listaFacturaAPI');
+Route::get('Provicao', 'FaturaController@listaAgencia');
+Route::get('buscarProvicao', 'FaturaController@getBuscaProvicao');
 Route::post('salvarFatura', 'FaturaController@salvarFatura');
 Route::post('salvarRecibo', 'FaturaController@salvarReciboManual');
 Route::get('editar/{id}', 'ClienteController@obterDados');
@@ -37,7 +39,8 @@ Route::get('emitir/{codigoFactura}', 'FaturaController@emitirServico');
 Route::get('impressaoAPI/{codigoFactura}/{codigo}', 'FaturaController@ImprimirFaturaAPI');
 Route::post('sendemail', 'EmailController@sendmail');
 Route::get('email', 'EmailController@index');
-//Route::post('salvarFatura1', 'FaturaController@salvarFaturaNota');
+Route::get('emissaoHash', 'FaturaController@EmissaoHash');
+Route::get('quantFactura', 'FaturaController@getFacturaHash');
 
 
 Route::get('sair', function () {

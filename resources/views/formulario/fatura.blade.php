@@ -11,8 +11,8 @@
                         <form method="post" name="form" action="{{ url('salvarFatura') }}" target="_blank">
                             @csrf
 
-                            <div class="card-body">
-                                <div class="row">
+                           <div class="card-body">
+                                <div class="row"> 
                                     <h5 class="card-title" style="font-weight: bold;">Seleccione o tipo de Fatura que
                                         deseja Emitir</h5>
                                     <div class="col-12" style="margin-bottom: 20px">
@@ -136,12 +136,12 @@
                                 </div>
                             </div>
 
-                    </div>
-                    </form>
+                  
+                        </form>
+                     </div>
                 </div>
 
             </div>
-        </div>
         </div>
     </section>
 @stop

@@ -294,10 +294,10 @@ class FaturaController extends Controller
     {
         try {
             $client = new Client();
-          //  $url = 'http://192.168.5.21/KIXIAPI/public/api/listarFaturaAPI';
-        
-            $response = Http::retry(3, 100)->get('192.168.5.21/KIXIAPI/public/api/listarFaturaAPI');
-          //  $response = $client->request('GET', $url);
+            //  $url = 'http://192.168.5.21/KIXIAPI/public/api/listarFaturaAPI';
+
+            $response = Http::retry(3, 100)->get('192.168.5.21/kixiapiweb/public/api/listarFaturaAPI');
+            //  $response = $client->request('GET', $url);
             if ($response->getStatusCode() == "200") {
                 $factura = json_decode($response->getBody());
 
@@ -317,21 +317,70 @@ class FaturaController extends Controller
         $versao = 'Orignal';
         $codigoFactura = base64_decode($codigoFactura1);
         $client = new Client();
-        $dadosFactura = 'http://192.168.5.21/KIXIAPI/public/api/getDadosEmpresa';
+        $dadosFactura = 'http://192.168.5.21/kixiapiweb/public/api/getDadosEmpresa';
         $dadosFactura = $client->request('GET', $dadosFactura);
         $dadosFactura = json_decode($dadosFactura->getBody());
-        $factura = 'http://192.168.5.21/KIXIAPI/public/api/getDadosFactura/' . $codigoFactura;
+        $factura = 'http://192.168.5.21/kixiapiweb/public/api/getDadosFactura/' . $codigoFactura;
         $factura = $client->request('GET', $factura);
         $factura = json_decode($factura->getBody());
-      
-        $factura_item = 'http://192.168.5.21/KIXIAPI/public/api/getDadosItemFacturaAPI/' . $codigoFactura;
+
+        $factura_item = 'http://192.168.5.21/kixiapiweb/public/api/getDadosItemFacturaAPI/' . $codigoFactura;
         $factura_item = $client->request('GET', $factura_item);
         $factura_item = json_decode($factura_item->getBody());
-        
-        $cliente = 'http://192.168.5.21/KIXIAPI/public/api/ClienteEspecifico/' . $factura[0]->cleCodigo;
+
+        $cliente = 'http://192.168.5.21/kixiapiweb/public/api/ClienteEspecifico/' . $factura[0]->cleCodigo;
         $cliente = $client->request('GET', $cliente);
         $cliente = json_decode($cliente->getBody());
         $tipoFactura = substr($factura[0]->ccoNumero, 0, 2);
-        return PDF::loadView('relatorio.Invoice1', compact('dadosFactura', 'versao', 'cliente', 'factura','factura_item', 'tipoFactura'))->setPaper('A4', 'portrait')->stream('Fatura.pdf');
+        return PDF::loadView('relatorio.Invoice1', compact('dadosFactura', 'versao', 'cliente', 'factura', 'factura_item', 'tipoFactura'))->setPaper('A4', 'portrait')->stream('Fatura.pdf');
+    }
+
+
+    public function listaAgencia()
+    {
+        try {
+            $client = new Client();
+            $response = Http::retry(3, 100)->get('http://l192.168.5.21/kixiapiweb/public/api/getDadoOficinas');
+
+            if ($response->getStatusCode() == "200") {
+                $oficina = json_decode($response->getBody());
+                return view('formulario.provicao', compact('oficina'));
+            } else {
+                return response()->json(['status', "error"]);
+            }
+        } catch (Exception $e) {
+        }
+    }
+
+
+
+    public function getBuscaProvicao(Request $request)
+    {
+        $client = new Client();
+        $data = date('Ymd', strtotime($request->data));
+        $agencia = $request->agencia;
+        $provicao = 'http://192.168.5.21/kixiapiweb/public/api/getListaProvicao/' . $data . '/' . $agencia;
+        $provicao = $client->request('GET', $provicao);
+        $provicao = json_decode($provicao->getBody());
+        return view('formulario.listaProvicao', compact('provicao'));
+    }
+    public function EmissaoHash()
+    {
+
+        return view('kixipedidos.consultaFactura');
+    }
+
+
+
+    public function getFacturaHash(Request $request)
+
+    {
+        $client = new Client();
+        $data1 = date('Ymd', strtotime($request->dataInicio));
+        $data2 = date('Ymd', strtotime($request->dataFim));
+        $resumoFactura = 'http://192.168.5.21/kixiapiweb/public/api/getResumoHash/' . $data1 . '/' . $data2;
+        $resumoFactura = $client->request('GET', $resumoFactura);
+        $resumoFactura = json_decode($resumoFactura->getBody());
+        return $resumoFactura;
     }
 }
